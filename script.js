@@ -162,35 +162,40 @@ function removeKey(obj, key){
     return obj;
 }
 
-
+//スコアの更新
 let matchNumber = 0;
 
 function storeData(){
+    //空白に対応するバリデーション
+    for(let key in UNO){
+        if(!document.querySelector(`#${key}`).value){
+            document.querySelector(`#${key}`).value = 0;
+        }
+    }
+
     matchNumber++;
     let totalScore = 0;
 
     for(let key in UNO){
-        let points = parseInt(document.querySelector(`#${key}`).value);
-        UNO[key][`match${matchNumber}`] = -points;
-        totalScore += points;
-        document.querySelector(`#${key}`).value = '';
+            let points = parseInt(document.querySelector(`#${key}`).value);
+            UNO[key][`match${matchNumber}`] = -points;
+            totalScore += points;
+            document.querySelector(`#${key}`).value = '';
     }
 
     document.querySelector('.winner').value = 0;
 
+    //勝者のスコアを計算
     let winner = document.querySelector(".winner").id;
     UNO[winner][`match${matchNumber}`] = totalScore;
 
+    //それぞれの合計を計算
     for(let key in UNO){
         UNO[key]['score'] += UNO[key][`match${matchNumber}`];
     }
 
-    console.log(totalScore);
-    console.log(UNO);
-
     updateTotalScoreTable();
     updateMatchHistoryTable(matchNumber);
-
 
 }
 
@@ -207,10 +212,24 @@ function updateTotalScoreTable(){
     cellTotalIndexEl.appendChild(document.createTextNode('Total Score'));
     trTotalScore.appendChild(cellTotalIndexEl);
 
+    let maxScore = 0;
+    let minScore = 0;
+    for(let key in UNO){
+        maxScore = Math.max(UNO[key]['score'], maxScore);
+        minScore = Math.min(UNO[key]['score'], minScore);
+    }
+    
     //playerの合計スコアを追加
     for(let key in UNO){
         let cellTotalEl = document.createElement('td');
         cellTotalEl.appendChild(document.createTextNode(UNO[key]['score']));
+
+        if(UNO[key]['score'] === maxScore){
+            cellTotalEl.style.color = 'olive';
+        }else if(UNO[key]['score'] === minScore){
+            cellTotalEl.style.color = 'maroon';
+        }
+
         trTotalScore.appendChild(cellTotalEl);
     }
 
@@ -238,6 +257,9 @@ function updateMatchHistoryTable(matchNumber){
     for(let key in UNO){
         let cellEl = document.createElement('td');
         cellEl.appendChild(document.createTextNode(UNO[key][`match${matchNumber}`]));
+        if(UNO[key][`match${matchNumber}`] > 0){
+            cellEl.style.color = "lime";
+        }
         trBodyEl.appendChild(cellEl);
     }
 

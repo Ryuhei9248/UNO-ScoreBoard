@@ -1,7 +1,7 @@
 
 .container-1, .container-2 {
     width: 50%;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -43,4 +43,8 @@
 
 select{
     min-width: 160px;
+}
+
+#match-history-table-div{
+    margin-top: 15px;
 }
