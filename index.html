@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>UNO Score Board</title>
+</head>
+<body>
+    <div class="container-1">
+        <h2>Add Players</h2>
+        <form action="#" class="form-group d-flex">
+            <input type="text" placeholder="Player 1"  class="form-control" id="player-name">
+            <button class="btn btn-success" id="add-player">Add</button>
+        </form>
+
+        <div class="card-div">
+            <div class="card">
+                <div class="card-header">Players</div>
+                    <ul class="list-group list-group-flush" id="players"></ul>
+            </div>
+    
+            <button class="btn btn-primary" id="next-page">Next</button>
+        </div>
+        
+
+        
+    </div>
+    
+    <div class="container-2">
+        <div id="table"></div>
+
+        <form action="#" class="form-group w-25">
+            <select name="winner" id="winner" onchange="showForm(this)" class="form-control">
+                <option value="#">Select Winner</option>
+            </select>
+        </form>
+
+        <form action="#" class="form-group" id="score-form">
+            <div id="score-form-div"></div>
+            <button class="btn btn-info" id="match-data">Submit</button>
+        </form>
+
+        <button class="btn btn-secondary" id="match-history">Match History</button>
+        <div id="match-history-table-div"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
